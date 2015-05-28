@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @survey.name  %></h1>
+
+<% @survey.questions.each do |question| %>
+	<%= form_for(@vote) do |f| %>
+		<% question.choices.each do |choice| %>
+			<%= f.radio_button(:choice, choice.id) %>
+			<%= f.label(:choice, choice.name) %>
+		<% end %>		
+			<%= f.submit %>
+		
+	<% end %>
+
+<% end %>	
+

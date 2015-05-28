@@ -1,0 +1,25 @@
+<li><%= @question.name %></li>
+
+
+
+<ul>
+<li> <%= form_for([@survey, @question, Choice.new], remote: true) do |f| %>
+					<div class="field">
+    					<%= f.label :name %><br>
+   				 		<%= f.text_field :name %>
+  					</div>
+  						<div class="actions">
+    					<%= f.submit %>
+  					</div>
+  	<% end %>
+</li>
+</ul>
+  	<%= form_for([@survey, Question.new],remote: true) do |f| %>
+			<div class="field">
+    			<%= f.label :name %><br>
+   				<%= f.text_field :name %>
+  			</div>
+  			<div class="actions">
+    			<%= f.submit %>
+  			</div>
+ <% end %>

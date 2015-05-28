@@ -1,0 +1,57 @@
+
+
+<h1><%= @survey.name %></h1>
+
+<% if @survey.questions %>
+	<ol class= "questions">
+	<% @survey.questions.each do |question| %>
+	
+		<li><%= question.name %></li>
+		<% if question.choices %>
+		<ul>
+			<% question.choices.each do |choice| %>
+				<li><%= choice.name %></li>
+			<% end %>
+				<div id ="go">
+					<%= form_for([@survey, question, @choice],remote: true) do |f| %>
+					<div class="field">
+    					<%= f.label :name %><br>
+   				 		<%= f.text_field :name %>
+  					</div>
+  						<div class="actions">
+    					<%= f.submit %>
+  					</div>
+  				<% end %>
+  				</div>
+  				
+		</ul>	
+			<% end %>
+		
+	<% end %>
+
+	
+	
+
+		<%= form_for([@survey, @question], remote: true) do |f| %>
+			<div class="field">
+    			<%= f.label :name %><br>
+   				<%= f.text_field :name %>
+  			</div>
+  			<div class="actions">
+    			<%= f.submit %>
+  			</div>
+  		<% end %>
+  	</ol>
+
+
+			
+<% end %>
+<%= form_for @survey, url: {action: "publish"} do |f| %>
+ 
+  <%= f.submit "Publish" %>
+<% end %>
+
+
+
+
+

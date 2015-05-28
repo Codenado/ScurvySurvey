@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ScurvySurvey</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<ul class="nav nav-pills">
+	<% if current_user %>
+  		
+  		  <li role="presentation"> <%= link_to "Logout", '/logout' %></li>
+  		  	</ul>>
+  		  	<%= form_for(Survey.new) do |f| %>
+  				<%= f.label(:new_survey, "New survey:") %>
+  				<%= f.text_field(:name) %>
+  				<%= f.submit("Submit") %>
+  				<% end %>
+  		 
+			
+  		
+	<% else %>
+ 		<li role="presentation"> <%= link_to 'Login', '/login' %></li> 
+ 		<li role="presentation"><%= link_to 'Signup', '/users/new' %></li>
+	<% end %>
+	<li role="presentation"> <%= link_to 'Home', '/' %> </li>
+	</ul>
+
+	<ul>
+	<% flash.each do |type,  message| %>
+	<div class="alert flash <%= type %>">
+	<li role="presentation"> <%= message %> </li>
+	 </div>
+	<% end %>  
+	</div>
+	</ul>
+<div class="container">
+
+<%= yield %>
+
+</body>
+</html>
