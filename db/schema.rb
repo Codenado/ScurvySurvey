@@ -62,12 +62,12 @@ ActiveRecord::Schema.define(version: 20150524221039) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "vote_id"
+    t.integer  "choice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "votes", ["choice_id"], name: "index_votes_on_choice_id"
   add_index "votes", ["user_id"], name: "index_votes_on_user_id"
-  add_index "votes", ["vote_id"], name: "index_votes_on_vote_id"
 
 end

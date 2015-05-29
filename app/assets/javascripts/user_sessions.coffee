@@ -3,11 +3,3 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).ready ->
-  $().on("ajax:success", (e, data, status, xhr) ->
-        $('.all').remove()
-        $('.container').append(xhr.responseText)
-       
-
-  ).on "ajax:error", (e, xhr, status, error) ->
-    $("#new_question").append "<p>ERROR</p>"

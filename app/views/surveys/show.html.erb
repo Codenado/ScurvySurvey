@@ -3,13 +3,18 @@
 <h1><%= @survey.name  %></h1>
 
 <% @survey.questions.each do |question| %>
-	<%= form_for(@vote) do |f| %>
+	<% if question.users.include?(current_user) %>
 		<% question.choices.each do |choice| %>
-			<%= f.radio_button(:choice, choice.id) %>
-			<%= f.label(:choice, choice.name) %>
-		<% end %>		
+			<li><%=" #{choice.name} : #{choice.votes.length}" %></li>
+		<% end %>	
+	<% else %>
+		<%= form_for(@vote, remote: true) do |f| %>
+			<% question.choices.each do |choice| %>
+				<%= f.radio_button(:choice, choice.id) %>
+				<%= f.label(:choice, choice.name) %>
+			<% end %>	
 			<%= f.submit %>
-		
+		<% end %>	
 	<% end %>
 
 <% end %>	
