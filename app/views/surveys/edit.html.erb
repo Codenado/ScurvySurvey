@@ -1,31 +1,29 @@
-
-
 <h1><%= @survey.name %></h1>
-<div class="wat">
-	<%= form_for([@survey, @question], remote: true) do |f| %>
-		<div class="field">
-			<%= f.label :name %><br>
-			<%= f.text_field :name %>
-		</div>
-		<div class="actions">
-			<%= f.submit %>
-		</div>
+<div class="new_survey">
+
+	<div class="new_survey_form">
+	<%= form_for([@survey, @question], remote: true, :html => {:class => "form-inline"}) do |f| %>
+		
+			
+		
+			<%= f.text_field :name, placeholder: "New question" %>
+		
+				
+			<%= f.submit class: 'btn btn-default btn-xs' %>
+		
 	 <% end %>
-	 </div>
 <% if @survey.questions %>
-	<ol>
+	<ol class="table-striped">
 	<% @survey.questions.each do |question| %>
 	
-		<li><%= question.name %></li>
+		<h3><li><%= question.name %></li></h3>
 		<ul>
-			<li><%= form_for([@survey, question, @choice],remote: true) do |f| %>
-					<div class="field">
-						<%= f.label :name %><br>
-					 		<%= f.text_field :name %>
-						</div>
-						<div class="actions">
-							<%= f.submit %>
-						</div>
+			<li><%= form_for([@survey, question, @choice], remote: true, :html => {:class => "form-inline"}) do |f| %>
+					
+					 		<%= f.text_field :name, placeholder: "New choice"%>
+						
+							<%= f.submit class: 'btn btn-default btn-xs'%>
+						
 						<% end %></li>
 		<% if question.choices %>
 		
@@ -47,14 +45,14 @@
 
 	
   	</ol>
-  	<%= form_for @survey, url: {action: "publish"} do |f| %>
+  	<%= form_for @survey, url: {action: "publish"}, :html => {:class => "form-inline"} do |f| %>
  
-  <%= f.submit "Publish" %>
+  <%= f.submit "Publish" , class: 'btn btn-default' %>
 <% end %>
 
 			
 <% end %>
-
+</div>
 
 
 

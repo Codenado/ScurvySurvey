@@ -4,14 +4,14 @@
 
 <li><%= @question.name %></li>
     <ul>
-      <li><%= form_for([@question.survey, @question, Choice.new],remote: true) do |f| %>
-          <div class="field">
+      <li><%= form_for([@question.survey, @question, Choice.new],remote: true, :html => {:class => "form-inline"}) do |f| %>
+          
             <%= f.label :name %><br>
               <%= f.text_field :name %>
-            </div>
-            <div class="actions">
+           
+         
               <%= f.submit %>
-            </div>
+           
           <% end %>
           </li>
   </ul>
