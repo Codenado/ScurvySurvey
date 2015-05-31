@@ -1,21 +1,31 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @survey.name  %></h1>
+<div class="take_survey">
 
 <% @survey.questions.each do |question| %>
 	<% if question.users.include?(current_user) %>
+		
+		<h3><%= question.name %></h3>
 		<% question.choices.each do |choice| %>
 			<li><%=" #{choice.name} : #{choice.votes.length}" %></li>
 		<% end %>	
+		<div class="new_suvey_form">
 	<% else %>
-		<%= form_for(@vote, remote: true) do |f| %>
+	<h3>question.name</h3>
+	<div class="new_suvey_form">
+		<%= form_for(@vote, remote: true, :html => {:class => ".form-horizontal"}) do |f| %>
 			<% question.choices.each do |choice| %>
+			<div class="form-group">
 				<%= f.radio_button(:choice, choice.id) %>
 				<%= f.label(:choice, choice.name) %>
+			</div>
 			<% end %>	
 			<%= f.submit %>
-		<% end %>	
+		<% end %>
+	
 	<% end %>
 
-<% end %>	
-
+<% end %>
+</div>	
+</div>

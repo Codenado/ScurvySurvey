@@ -8,38 +8,31 @@
 </head>
 <body>
 <div class="container">
-<ul class="nav nav-pills">
-	<% if current_user %>
-  		
-  		  <li role="presentation"> <%= link_to "Logout", '/logout' %></li>
-  		  	</ul>>
-  		  	<%= form_for(Survey.new) do |f| %>
-  				<%= f.label(:new_survey, "New survey:") %>
-  				<%= f.text_field(:name) %>
-  				<%= f.submit("Submit") %>
-  				<% end %>
-  		 
-			
-  		
-	<% else %>
- 		<li role="presentation"> <%= link_to 'Login', '/login' %></li> 
- 		<li role="presentation"><%= link_to 'Signup', '/users/new' %></li>
-	<% end %>
-	<li role="presentation"> <%= link_to 'Home', '/' %> </li>
+	<div class="header">
+	<ul class="nav nav-pills nav-justified">
+		<% if current_user %>
+	  		<li role="presentation"> <%= link_to "Logout", '/logout' %></li>
+	  		<li role="presentation"> <%= link_to 'Home', '/' %> </li>
+	  		<li role='presentation'> <a href="javascript:void(0)" onclick="div_show();">New Survey</li>
+		<% else %>
+	 		<li role="presentation"> <%= link_to 'Login', '/login' %></li> 
+	 		<li role="presentation"><%= link_to 'Signup', '/users/new' %></li>
+			<li role="presentation"> <%= link_to 'Home', '/' %> </li>
+		<% end %>
 	</ul>
 
-	<ul>
-	<% flash.each do |type,  message| %>
-	<div class="alert flash <%= type %>">
-	<li role="presentation"> <%= message %> </li>
-	 </div>
-	<% end %>  
-	
-	</ul>
+		<ul>
+		<% flash.each do |type,  message| %>
+		<div class="alert flash <%= type %>">
+		<li role="presentation"> <%= message %> </li>
+		 </div>
+		<% end %>  
+		
+		</ul>
 
 
-<%= yield %>
-</div>
+	<%= yield %>
+	</div>
 
 </body>
 </html>
