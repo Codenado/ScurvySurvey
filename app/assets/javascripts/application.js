@@ -18,3 +18,13 @@
 function div_show() {
 	document.getElementById('show').style.display = "block";
 }
+
+
+$(document).ready(function() {
+   $(".vote").on("ajax:success", function(e, data, status, xhr) {
+   
+    $(this).replaceWith(xhr.responseText)
+  }).on("ajax:error", function(e, xhr, status, error) {
+
+  });
+});

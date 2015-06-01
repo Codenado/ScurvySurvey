@@ -15,3 +15,4 @@ $(document).ready ->
   ).on "ajax:error", (e, xhr, status, error) ->
     alert(error)
     $("#new_article").append "<p>ERROR</p>"
+

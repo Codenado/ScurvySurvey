@@ -1,7 +1,7 @@
 <h1><%= @survey.name %></h1>
-<div class="new_survey">
+<div class="take_survey">
 
-	<div class="new_survey_form">
+	
 	<%= form_for([@survey, @question], remote: true, :html => {:class => "form-inline"}) do |f| %>
 		
 			

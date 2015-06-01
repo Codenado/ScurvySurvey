@@ -19,22 +19,23 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <%= f.radio_button(:gender, "male") %>
+  <div class="field"><br>
+    <%= f.radio_button(:gender, "male", checked: true) %>
     <%= f.label(:gender, "Male") %>
     <%= f.radio_button(:gender, "female") %>
     <%= f.label(:gender, "Female") %>
   </div>
+  <br>
   <div class="field">
-    <%= f.label :confirmation %><br>
+    <%= f.label :password %><br>
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
+    <%= f.label :confirmation %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-default' %>
   </div>
 <% end %>

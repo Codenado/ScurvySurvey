@@ -8,21 +8,23 @@
 		
 		<h3><%= question.name %></h3>
 		<% question.choices.each do |choice| %>
-			<li><%=" #{choice.name} : #{choice.votes.length}" %></li>
+			<p><%=" #{choice.name} : #{choice.votes.length}" %></p>
 		<% end %>	
 		<div class="new_suvey_form">
 	<% else %>
 	<h3>question.name</h3>
 	<div class="new_suvey_form">
+		<div class="vote">
 		<%= form_for(@vote, remote: true, :html => {:class => ".form-horizontal"}) do |f| %>
 			<% question.choices.each do |choice| %>
 			<div class="form-group">
-				<%= f.radio_button(:choice, choice.id) %>
+				<%= f.radio_button(:choice, choice.id, checked: true) %>
 				<%= f.label(:choice, choice.name) %>
 			</div>
 			<% end %>	
 			<%= f.submit %>
 		<% end %>
+		</div>
 	
 	<% end %>
 
