@@ -6,7 +6,5 @@ class CreateTakenSurveys < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :taken_surveys, :users
-    add_foreign_key :taken_surveys, :surveys
   end
 end

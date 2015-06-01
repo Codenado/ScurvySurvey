@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150524221039) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "choices", force: :cascade do |t|
     t.string   "name"
     t.integer  "question_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150524221039) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "choices", ["question_id"], name: "index_choices_on_question_id"
+  add_index "choices", ["question_id"], name: "index_choices_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "name"
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150524221039) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id"
+  add_index "questions", ["survey_id"], name: "index_questions_on_survey_id", using: :btree
 
   create_table "surveys", force: :cascade do |t|
     t.string   "name"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150524221039) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id"
+  add_index "surveys", ["user_id"], name: "index_surveys_on_user_id", using: :btree
 
   create_table "taken_surveys", force: :cascade do |t|
     t.integer  "user_id"
@@ -49,8 +52,8 @@ ActiveRecord::Schema.define(version: 20150524221039) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "taken_surveys", ["survey_id"], name: "index_taken_surveys_on_survey_id"
-  add_index "taken_surveys", ["user_id"], name: "index_taken_surveys_on_user_id"
+  add_index "taken_surveys", ["survey_id"], name: "index_taken_surveys_on_survey_id", using: :btree
+  add_index "taken_surveys", ["user_id"], name: "index_taken_surveys_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -68,7 +71,10 @@ ActiveRecord::Schema.define(version: 20150524221039) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "votes", ["choice_id"], name: "index_votes_on_choice_id"
-  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
+  add_index "votes", ["choice_id"], name: "index_votes_on_choice_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
+  add_foreign_key "choices", "questions"
+  add_foreign_key "questions", "surveys"
+  add_foreign_key "surveys", "users"
 end

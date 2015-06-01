@@ -6,7 +6,5 @@ class CreateVotes < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :votes, :users
-    add_foreign_key :votes, :questions
   end
 end
