@@ -3,24 +3,19 @@
 
 
 <h3><li><%= @question.name %></li></h3>
-    <ul>
+    <ul class="new_choice">
       <li><%= form_for([@question.survey, @question, Choice.new],remote: true, :html => {:class => "form-inline"}) do |f| %>
-          
-           
-              <%= f.text_field :name, placeholder: "New choice" %>
-           
-         
-              <%= f.submit class: 'btn btn-default btn-xs' %>
-           
+            <%= f.text_field :name, placeholder: "New choice" %>
+            <%= f.submit class: 'btn btn-default btn-xs' %>
           <% end %>
-          </li>
+       </li>
   </ul>
 
   <script type="text/javascript"> 
-      $(".form-inline").on("ajax:success", function(e, data, status, xhr) {
-        return $('ol').append(xhr.responseText);
+      $(".new_choice").on("ajax:success", function(e, data, status, xhr) {
+         $(this).append(xhr.responseText);
       }).on("ajax:error", function(e, xhr, status, error) {
-        return $("#new_article").append("<p>ERROR</p>");
+         $("#new_article").append("<p>ERROR</p>");
       });
 
 </script>

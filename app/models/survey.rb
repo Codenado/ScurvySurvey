@@ -18,5 +18,19 @@ class Survey < ActiveRecord::Base
 	else
 		return "#{self.takers[0].name}, #{self.takers[1].name}, #{self.takers[2].name} and #{self.takers.length - 3} have taken this survey."
 	end
-  end	
+  end
+
+  def ready_publish
+    ok = true
+    if self.questions.length < 1
+      ok = false
+    end 
+    self.questions.each do |question|
+      if question.choices.length < 2
+        ok = false
+      end
+    end
+    ok 
+  end  
+
 end

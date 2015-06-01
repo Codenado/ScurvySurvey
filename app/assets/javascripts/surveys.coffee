@@ -4,14 +4,14 @@
 
 
 $(document).ready ->
-  $("li").on("ajax:success", (e, data, status, xhr) ->
-    $(@).parent().append(xhr.responseText)
+  $(".new_choice").on("ajax:success", (e, data, status, xhr) ->
+    $(@).append(xhr.responseText)
   ).on "ajax:error", (e, xhr, status, error) ->
     $("#new_article").append "<p>ERROR</p>"
 
 
   $("#new_question").on("ajax:success", (e, data, status, xhr) ->
-    $('ol').append(xhr.responseText)
+    $('.new_questions').append(xhr.responseText)
   ).on "ajax:error", (e, xhr, status, error) ->
     alert(error)
     $("#new_article").append "<p>ERROR</p>"

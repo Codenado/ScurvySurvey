@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy, :publish]
-
+  before_action :authorize, only: [:show, :edit, :update, :destroy, :publish]
   # GET /surveys
   # GET /surveys.json
   def index
@@ -9,9 +9,13 @@ class SurveysController < ApplicationController
   end
 
   def publish
-    @survey.published = true
-    @survey.save
-    redirect_to @survey
+    @survey.published = @survey.ready_publish
+    if @survey.published
+      @survey.save
+      redirect_to @survey
+    else
+       redirect_to @survey
+    end
   end  
 
   # GET /surveys/1
@@ -21,8 +25,6 @@ class SurveysController < ApplicationController
     unless @survey.published 
       redirect_to edit_survey_path(@survey)
     end  
-
-
   end
 
   # GET /surveys/new
@@ -32,8 +34,10 @@ class SurveysController < ApplicationController
 
   # GET /surveys/1/edit
   def edit
-    @question = Question.new
-    @choice = Choice.new
+    if @survey.user == current_user
+      @question = Question.new
+      @choice = Choice.new
+    end
   end
 
   # POST /surveys
@@ -52,28 +56,18 @@ class SurveysController < ApplicationController
     end
   end
 
-  # PATCH/PUT /surveys/1
-  # PATCH/PUT /surveys/1.json
-  def update
-    respond_to do |format|
-      if @survey.update(survey_params)
-        format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
-        format.json { render :show, status: :ok, location: @survey }
-      else
-        format.html { render :edit }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+
 
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
-    @survey.destroy
-    respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+   if @survey.user == current_user
+      @survey.destroy
+        respond_to do |format|
+        format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    end  
   end
 
 

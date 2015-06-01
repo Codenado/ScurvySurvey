@@ -1,23 +1,15 @@
 <h1><%= @survey.name %></h1>
 <div class="take_survey">
-
-	
 	<%= form_for([@survey, @question], remote: true, :html => {:class => "form-inline"}) do |f| %>
-		
-			
-		
-			<%= f.text_field :name, placeholder: "New question" %>
-		
-				
-			<%= f.submit class: 'btn btn-default btn-xs' %>
-		
-	 <% end %>
+		<%= f.text_field :name, placeholder: "New question" %>
+		<%= f.submit class: 'btn btn-default btn-xs' %>
+	<% end %>
 <% if @survey.questions %>
-	<ol class="table-striped">
+	<ol class="new_questions">
 	<% @survey.questions.each do |question| %>
 	
 		<h3><li><%= question.name %></li></h3>
-		<ul>
+		<ul class="new_choice">
 			<li><%= form_for([@survey, question, @choice], remote: true, :html => {:class => "form-inline"}) do |f| %>
 					
 					 		<%= f.text_field :name, placeholder: "New choice" %>

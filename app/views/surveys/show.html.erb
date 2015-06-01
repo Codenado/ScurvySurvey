@@ -5,14 +5,13 @@
 
 <% @survey.questions.each do |question| %>
 	<% if question.users.include?(current_user) %>
-		
 		<h3><%= question.name %></h3>
 		<% question.choices.each do |choice| %>
 			<p><%=" #{choice.name} : #{choice.votes.length}" %></p>
 		<% end %>	
 		<div class="new_suvey_form">
 	<% else %>
-	<h3>question.name</h3>
+	<h3><%= question.name %></h3>
 	<div class="new_suvey_form">
 		<div class="vote">
 		<%= form_for(@vote, remote: true, :html => {:class => ".form-horizontal"}) do |f| %>
