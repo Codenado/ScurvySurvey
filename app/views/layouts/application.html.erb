@@ -10,6 +10,8 @@
 <div class="container">
 	<div class="header">
 	<ul class="nav nav-pills nav-justified">
+	<h1>Scurvy Survey</h1>
+	<br>
 		<% if current_user %>
 	  		<li role="presentation"> <%= link_to "Logout", '/logout' %></li>
 	  		<li role="presentation"> <%= link_to 'Home', '/' %> </li>
@@ -21,14 +23,15 @@
 		<% end %>
 	</ul>
 
-		<ul>
+	<ul>
 		<% flash.each do |type,  message| %>
 		<div class="alert flash <%= type %>">
-		<li role="presentation"> <%= message %> </li>
+			<li role="presentation"> <%= message %> </li>
 		 </div>
 		<% end %>  
 		
-		</ul>
+	</ul>
+	</div>
 
 
 	<%= yield %>

@@ -17,6 +17,7 @@
 h1 {
 	text-align: center 
 }
+
 #show{
 	display: none;
 }
@@ -24,7 +25,14 @@ h1 {
 
 
 .header{
-	padding: 40px;
+	padding-top: 20px;
+	background-color: #F8F8F8;
+	border-radius: 25px;
+	border-style: groove;
+}
+
+body {
+	background-color: #99FFFF 
 }
 
 .create_survey{
