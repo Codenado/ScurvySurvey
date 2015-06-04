@@ -15,9 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-function div_show() {
-	document.getElementById('show').style.display = "block";
-}
+
 
 
 $(document).ready(function() {

@@ -15,7 +15,7 @@
 		<% if current_user %>
 	  		<li role="presentation"> <%= link_to "Logout", '/logout' %></li>
 	  		<li role="presentation"> <%= link_to 'Home', '/' %> </li>
-	  		<li role='presentation'> <a href="#" onclick="div_show();">New Survey</a></li>
+	  		
 		<% else %>
 	 		<li role="presentation"> <%= link_to 'Login', '/login' %></li> 
 	 		<li role="presentation"><%= link_to 'Signup', '/users/new' %></li>
