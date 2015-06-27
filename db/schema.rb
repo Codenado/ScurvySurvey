@@ -74,7 +74,4 @@ ActiveRecord::Schema.define(version: 20150524221039) do
   add_index "votes", ["choice_id"], name: "index_votes_on_choice_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
-  add_foreign_key "choices", "questions"
-  add_foreign_key "questions", "surveys"
-  add_foreign_key "surveys", "users"
 end
